@@ -1,7 +1,7 @@
 // src/app/api/outlets/route.ts
 import { NextResponse } from "next/server";
 
-const API_URL = "http://127.0.0.1:8000/outlets"; // FastAPI URL
+const API_URL: string = process.env.NEXT_PUBLIC_API_URL as string;
 
 export async function GET() {
   try {
