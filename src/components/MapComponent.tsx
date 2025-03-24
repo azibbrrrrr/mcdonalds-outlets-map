@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -14,30 +14,15 @@ interface Outlet {
   waze_link: string;
 }
 
-const API_URL = "/api/outlets"; // Using Next.js API Route as a proxy
+interface MapComponentProps {
+  outlets: Outlet[];
+}
 
-export default function MapComponent() {
-  const [outlets, setOutlets] = useState<Outlet[]>([]);
+export default function MapComponent({ outlets }: MapComponentProps) {
   const [selectedOutlet, setSelectedOutlet] = useState<Outlet | null>(null);
   const [intersectingOutlets, setIntersectingOutlets] = useState<Set<string>>(
     new Set()
   );
-
-  useEffect(() => {
-    async function fetchOutlets() {
-      try {
-        const response = await fetch(API_URL);
-        if (!response.ok)
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        const data = await response.json();
-        setOutlets(data);
-      } catch (error) {
-        console.error("Error fetching outlet data:", error);
-      }
-    }
-
-    fetchOutlets();
-  }, []);
 
   // Function to check if two outlets are within 5KM of each other
   function areOutletsIntersecting(outlet1: Outlet, outlet2: Outlet): boolean {
@@ -79,7 +64,7 @@ export default function MapComponent() {
   // Define icons
   const defaultIcon = new L.Icon({
     iconUrl:
-      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png",
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -90,7 +75,7 @@ export default function MapComponent() {
 
   const highlightedIcon = new L.Icon({
     iconUrl:
-      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png",
+      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
