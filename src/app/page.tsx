@@ -84,7 +84,7 @@ export default function Home() {
         <div className="mb-6 bg-white rounded-lg shadow p-3 flex items-center">
           <input
             type="text"
-            placeholder="Search for an outlet..."
+            placeholder="Ask AI: Which outlets in KL operate 24 hours?"
             className="w-full outline-none text-gray-700 px-2"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -128,7 +128,7 @@ export default function Home() {
           <MapComponent outlets={filteredOutlets} />
         ) : (
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <h2 className="text-xl font-semibold p-4 border-b border-gray-100">
+            <h2 className="text-xl p-4 border-b border-gray-100 text-black font-semibold">
               {query ? "Search Results" : "All McDonald's Outlets"}
             </h2>
             {filteredOutlets.length === 0 ? (
