@@ -74,7 +74,7 @@ export default function Home() {
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center">
             <span className="text-yellow-400 text-4xl mr-2">M</span>
-            <h1 className="text-2xl font-bold">McDonald's Finder</h1>
+            <h1 className="text-2xl font-bold">McDonald&apos;s Finder</h1>
           </div>
         </div>
       </header>

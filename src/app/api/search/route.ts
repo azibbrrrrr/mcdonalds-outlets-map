@@ -40,6 +40,7 @@ export async function GET(request: Request) {
     });
 
   } catch (error) {
+    console.error("Error fetching search results:", error); // Log the error
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
